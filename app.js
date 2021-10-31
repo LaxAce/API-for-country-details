@@ -1,5 +1,5 @@
 import express from 'express';
-// import fetch from 'node-fetch';
+import fetch from 'node-fetch';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Country from './models/country.js';
@@ -18,6 +18,7 @@ const app = express();
 //       datas.map(data => {
 //         const country = new Country({
 //           name: data.name,
+//           alpha: data.alpha3Code,
 //           topLevelDomain: data.topLevelDomain,
 //           capital: data.capital,
 //           subregion: data.subregion,
@@ -79,6 +80,21 @@ app.get(`/region/:region`, async (req, res) => {
 
   try {
     const country = await Country.find({ region: newRegion });
+    country.length == 0
+      ? res.json({ status: 404, message: 'Region Not Found' })
+      : res.json(country);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Searching by alpha3Code
+app.get(`/alpha/:alpha`, async (req, res) => {
+  const alpha = req.params.alpha;
+  const newAlpha = alpha.toUpperCase();
+
+  try {
+    const country = await Country.find({ alpha: newAlpha });
     country.length == 0
       ? res.json({ status: 404, message: 'Region Not Found' })
       : res.json(country);
