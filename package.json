@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "babel app.js — out-file app-compiled.js",
     "start": "babel-node app.js"
   },
   "author": "",
