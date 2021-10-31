@@ -88,6 +88,18 @@ app.get(`/region/:region`, async (req, res) => {
   }
 });
 
+// Searching by id
+app.get(`/id/:id`, async (req, res) => {
+  try {
+    const country = await Country.findById(req.params.id);
+    country.length == 0
+      ? res.json({ status: 404, message: 'Region Not Found' })
+      : res.json(country);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Searching by alpha3Code
 app.get(`/alpha/:alpha`, async (req, res) => {
   const alpha = req.params.alpha;
