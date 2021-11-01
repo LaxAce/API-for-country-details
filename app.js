@@ -3,9 +3,12 @@ import fetch from 'node-fetch';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Country from './models/country.js';
+import cors from 'cors';
 
 dotenv.config();
 const app = express();
+
+app.use(cors());
 
 // Uploading data to the Database
 
