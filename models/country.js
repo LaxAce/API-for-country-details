@@ -1,18 +1,18 @@
 import mongoose from 'mongoose';
 
 const countrySchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  alpha: { type: String, required: true },
-  topLevelDomain: [{ type: String, required: true }],
-  capital: { type: String, required: true },
-  subregion: { type: String, required: true },
-  region: { type: String, required: true },
-  population: { type: Number, required: true },
-  borders: [{ type: String, required: true }],
-  nativeName: { type: String, required: true },
-  flag: { type: String, required: true },
-  currencies: [{ type: String, required: true }],
-  languages: [{ type: String, required: true }],
+  name: { type: String },
+  alpha: { type: String },
+  topLevelDomain: [{ type: String }],
+  capital: { type: String },
+  subregion: { type: String },
+  region: { type: String },
+  population: { type: Number },
+  borders: [{ type: String }],
+  nativeName: { type: String },
+  flag: { type: String },
+  currencies: [{ type: String }],
+  languages: [{ type: String }],
 });
 
 const Country = mongoose.model('Country', countrySchema);
